@@ -7,10 +7,10 @@ async function initCarousel(building) {
     slidesContainer.innerHTML = '';
 
     try {
-        // 🔹 Fetch dynamic images from backend
+        
         const response = await fetch(`https://map-backend-tdgk.onrender.com/api/building-images${building.properties.id}`);
-        const data = await response.json(); // <-- FIX: Get object first
-        const images = data.images || []; // <-- FIX: access the 'images' array properly
+        const data = await response.json(); 
+        const images = data.images || []; 
 
         if (images.length === 0) {
             slidesContainer.innerHTML = createPlaceholderSlide();
