@@ -1,13 +1,13 @@
 let markers = [];
 let markerLayer = null;
 
-// Create custom pin icon
+
 function createPinIcon(locationType) {
     const iconConfig = CONFIG.pinIcons[locationType] || CONFIG.pinIcons.default;
     return L.icon(iconConfig);
 }
 
-// Add all markers
+
 function addAllMarkers(locations = CAMPUS_LOCATIONS) {
     clearMarkers();
     markerLayer = L.layerGroup().addTo(map);
@@ -16,7 +16,7 @@ function addAllMarkers(locations = CAMPUS_LOCATIONS) {
     console.log(`Added ${locations.length} markers to map`);
 }
 
-// Add a single marker
+
 function addMarker(location) {
     const icon = createPinIcon(location.type);
 
@@ -45,7 +45,7 @@ function addMarker(location) {
     return marker;
 }
 
-// Clear all markers
+
 function clearMarkers() {
     if (markerLayer) map.removeLayer(markerLayer);
 
@@ -56,7 +56,7 @@ function clearMarkers() {
     markers = [];
 }
 
-// Filter markers
+
 function getLocationsByType(type) {
     if (!type || type === 'all') return CAMPUS_LOCATIONS;
     return CAMPUS_LOCATIONS.filter(loc => loc.type?.toLowerCase() === type.toLowerCase());
@@ -68,7 +68,7 @@ function filterMarkers(type) {
     addAllMarkers(filtered);
 }
 
-// Highlight marker
+
 function highlightMarker(locationId) {
     const location = CAMPUS_LOCATIONS.find(loc => loc.id === locationId);
     if (location) {
@@ -77,7 +77,7 @@ function highlightMarker(locationId) {
     }
 }
 
-// Search markers
+
 function searchAndDisplayMarkers(query) {
     if (!query) {
         addAllMarkers(CAMPUS_LOCATIONS);
@@ -96,9 +96,7 @@ function searchAndDisplayMarkers(query) {
     return results;
 }
 
-// --------------------------
-// Dynamic Images
-// --------------------------
+
 async function fetchBuildingImages(buildingId) {
     try {
         const res = await fetch(`https://map-backend-tdgk.onrender.com/api/building-images/${buildingId}`);
